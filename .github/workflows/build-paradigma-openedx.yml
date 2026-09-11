@@ -11,6 +11,7 @@ permissions:
 
 env:
   IMAGE_NAME: ghcr.io/paradigmaec/openedx-paradigma
+  IMAGE_TAG: release
 
 jobs:
   build:
@@ -38,22 +39,38 @@ jobs:
         run: |
           tutor plugins enable indigo
 
-      - name: Configure custom Open edX image
+      - name: Configure image
         run: |
           tutor config save \
-            --set DOCKER_IMAGE_OPENEDX=${IMAGE_NAME}:dev
+            --set DOCKER_IMAGE_OPENEDX=${IMAGE_NAME}:${IMAGE_TAG}
+
+      - name: Login to GHCR
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build Open edX image
         run: |
           tutor images build openedx
 
-      - name: Login to GHCR
+      - name: Push Open edX image
+        shell: bash
         run: |
-          echo "${{ secrets.GITHUB_TOKEN }}" | \
-          docker login ghcr.io \
-            -u "${{ github.actor }}" \
-            --password-stdin
+          for attempt in 1 2 3; do
+            echo "Push attempt $attempt"
 
-      - name: Push image
-        run: |
-          tutor images push openedx
+            if tutor images push openedx; then
+              echo "Push successful"
+              exit 0
+            fi
+
+            if [ "$attempt" -lt 3 ]; then
+              echo "Push failed. Retrying in 20 seconds..."
+              sleep 20
+            fi
+          done
+
+          echo "Push failed after 3 attempts"
+          exit 1
