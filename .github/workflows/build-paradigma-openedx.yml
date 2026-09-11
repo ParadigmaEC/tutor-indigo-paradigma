@@ -1,4 +1,4 @@
-name: Build Open edX image
+name: Build Open edX images
 
 on:
   push:
@@ -10,7 +10,8 @@ permissions:
   packages: write
 
 env:
-  IMAGE_NAME: ghcr.io/paradigmaec/openedx-paradigma
+  OPENEDX_IMAGE: ghcr.io/paradigmaec/openedx-paradigma
+  MFE_IMAGE: ghcr.io/paradigmaec/openedx-mfe-paradigma
   IMAGE_TAG: release
 
 jobs:
@@ -39,10 +40,11 @@ jobs:
         run: |
           tutor plugins enable indigo
 
-      - name: Configure image
+      - name: Configure images
         run: |
           tutor config save \
-            --set DOCKER_IMAGE_OPENEDX=${IMAGE_NAME}:${IMAGE_TAG}
+            --set DOCKER_IMAGE_OPENEDX=${OPENEDX_IMAGE}:${IMAGE_TAG} \
+            --set DOCKER_IMAGE_MFE=${MFE_IMAGE}:${IMAGE_TAG}
 
       - name: Login to GHCR
         uses: docker/login-action@v3
@@ -55,14 +57,18 @@ jobs:
         run: |
           tutor images build openedx
 
+      - name: Build MFE image
+        run: |
+          tutor images build mfe
+
       - name: Push Open edX image
         shell: bash
         run: |
           for attempt in 1 2 3; do
-            echo "Push attempt $attempt"
+            echo "Open edX push attempt $attempt"
 
             if tutor images push openedx; then
-              echo "Push successful"
+              echo "Open edX push successful"
               exit 0
             fi
 
@@ -72,5 +78,25 @@ jobs:
             fi
           done
 
-          echo "Push failed after 3 attempts"
+          echo "Open edX push failed after 3 attempts"
+          exit 1
+
+      - name: Push MFE image
+        shell: bash
+        run: |
+          for attempt in 1 2 3; do
+            echo "MFE push attempt $attempt"
+
+            if tutor images push mfe; then
+              echo "MFE push successful"
+              exit 0
+            fi
+
+            if [ "$attempt" -lt 3 ]; then
+              echo "Push failed. Retrying in 20 seconds..."
+              sleep 20
+            fi
+          done
+
+          echo "MFE push failed after 3 attempts"
           exit 1
