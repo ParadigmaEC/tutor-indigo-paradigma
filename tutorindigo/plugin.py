@@ -23,8 +23,8 @@ config: t.Dict[str, t.Dict[str, t.Any]] = {
     # Add here your new settings
     "defaults": {
         "VERSION": __version__,
-        "WELCOME_MESSAGE": "Aprende, crea y transforma con Paradigma",
-        "PRIMARY_COLOR": "#202222",  # Paradigma ink
+        "WELCOME_MESSAGE": "Ideas que transforman.",
+        "PRIMARY_COLOR": "#050505",
         "ENABLE_DARK_TOGGLE": True,
         # Footer links are dictionaries with a "title" and "url"
         # To remove all links, run:
@@ -32,9 +32,9 @@ config: t.Dict[str, t.Dict[str, t.Any]] = {
         "FOOTER_NAV_LINKS": [
             {"title": "Nosotros", "url": "https://paradigma.ec/about"},
             {"title": "Servicios", "url": "https://paradigma.ec/services"},
-            {"title": "Privacidad", "url": "/privacy"},
-            {"title": "Ayuda", "url": "/help"},
             {"title": "Contacto", "url": "https://paradigma.ec/contact"},
+            {"title": "Privacidad", "url": "https://paradigma.ec/policy/privacy/"},
+            {"title": "Términos", "url": "https://paradigma.ec/policy/terms/"},
         ],
     },
     "unique": {},

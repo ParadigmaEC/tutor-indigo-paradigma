@@ -8,7 +8,7 @@ const IndigoFooter = () => {
   const messages = {
     "footer.poweredby.text": {
       id: "footer.poweredby.text",
-      defaultMessage: "Powered by",
+      defaultMessage: "Tecnología",
       description: "text for the footer",
     },
     "footer.tutorlogo.altText": {
@@ -23,7 +23,7 @@ const IndigoFooter = () => {
     },
     "footer.copyright.text": {
       id: "footer.copyright.text",
-      defaultMessage: `Copyrights ©${new Date().getFullYear()}. All Rights Reserved.`,
+      defaultMessage: `© ${new Date().getFullYear()} Paradigma. Todos los derechos reservados.`,
       description: "copyright text for the footer",
     },
   };
@@ -31,6 +31,14 @@ const IndigoFooter = () => {
   return (
     <div className="wrapper wrapper-footer">
       <footer id="footer" className="tutor-container">
+        <div className="paradigma-footer-brand">
+          <img
+            src={`${config.LMS_BASE_URL}/static/indigo/images/paradigma-mark-white.svg`}
+            alt=""
+            aria-hidden="true"
+          />
+          <span>Paradigma</span>
+        </div>
         <div className="footer-top">
           <div className="powered-area">
             <ul className="logo-list">

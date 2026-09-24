@@ -27,6 +27,8 @@ body {
 
 header.global-header {
     border: none;
+    border-bottom: 1px solid rgba($paradigma-black, .12);
+    background: $paradigma-white;
     padding: 0;
     overflow: visible;
     box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.06), 0px 1px 3px 0px rgba(0, 0, 0, 0.10);
@@ -52,10 +54,12 @@ header.global-header {
             height: auto;
             @include media-breakpoint-up(lg) {
                 margin: 0;
-                margin: 6px 0 0;
+                margin: 8px 0 0;
             }
             .logo {
-                height: 48px;
+                width: 82px;
+                height: 36px;
+                object-fit: contain;
                 margin: 0;
 
                 body.indigo-dark-theme & {
@@ -84,12 +88,12 @@ header.global-header {
                     font-weight: 500;
                     line-height: 22px;
                     padding: 20px 0;
-                    color: $light-dark;
+                    color: $paradigma-black;
                     margin: 0 16px 0 0;
                     border-bottom: 2px solid transparent;
                     &.active, &:hover {
-                        color: $dark;
-                        border-bottom: 2px solid $primary;
+                        color: $paradigma-black;
+                        border-bottom: 2px solid $paradigma-black;
                     }
                 }
             }
@@ -105,7 +109,7 @@ header.global-header {
                 font-size: 14px;
                 font-weight: 500;
                 line-height: 20px;
-                border-radius: 6px;
+                border-radius: 9999px;
                 margin: 12px 0;
                 &:after {
                     margin: 4px 0 0 4px;
@@ -322,7 +326,8 @@ body.indigo-dark-theme {
     }
     header.global-header {
         background: $body-bg-d;
-        box-shadow: 0px 1px 2px 0px rgba(255, 255, 255, 0.8), 0px 1px 3px 0px rgba(255, 255, 255, 0.1);
+        border-bottom-color: rgba($paradigma-border, .2);
+        box-shadow: none;
         .nav-links {
             .main {
                 .nav-tab {

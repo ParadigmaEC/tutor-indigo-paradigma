@@ -3,20 +3,16 @@
 <%! from django.utils.translation import gettext as _ %>
 <%inherit file="../main.html" />
 
-<%block name="pagetitle">${_("About")}</%block>
+<%block name="pagetitle">Nosotros</%block>
 
 <main id="main" aria-label="Content" tabindex="-1">
     <section class="container about">
         <h1>
-            <%block name="pageheader">${page_header or _("About")}</%block>
+            <%block name="pageheader">${page_header or "Aprender también transforma."}</%block>
         </h1>
         <p>
-            <%block name="pagecontent">${page_content or _("This page left intentionally blank. Feel free to add your own content.")}</%block>
+            <%block name="pagecontent">${page_content or "Esta es la plataforma de aprendizaje de Paradigma, un estudio de estrategia, creatividad y comunicación."}</%block>
         </p>
-        <!-- NEW IN INDIGO: add graphic image -->
-        <div class="graphic-img">
-            <img src="${static.url('images/about.svg')}" alt="Runs on Tutor" />
-            <img class="dark" src="${static.url('images/about-dark.svg')}" alt="Runs on Tutor" />
-        </div>
+        <a class="paradigma-static-link" href="https://paradigma.ec/about">Conoce el estudio</a>
     </section>
 </main>

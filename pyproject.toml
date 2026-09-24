@@ -2,7 +2,7 @@
 
 [project]
 name = "tutor-indigo"
-description = "Indigo theme plugin for Tutor"
+description = "Paradigma-branded Open edX theme plugin for Tutor"
 readme = { file = "README.rst", content-type = "text/x-rst" }
 license = { text = "AGPLv3" }
 requires-python = ">=3.10"

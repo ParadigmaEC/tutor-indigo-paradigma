@@ -2,7 +2,7 @@
 section.home {
     max-width: 1600px;
     margin: 0 auto;
-    padding: 0 15px;
+    padding: 0 24px;
 }
 .home>header .title {
     background: none !important;
@@ -38,34 +38,37 @@ section.home {
                 width: 100%;
                 float: none;
                 margin: 0;
-                padding: 30px 0 0;
+                padding: 64px 0 0;
                 min-height: 20px;
                 @include media-breakpoint-up(sm) {
                     padding: 50px 0 0;
                 }
                 .heading-group {
-                    margin: 0 0 25px;
+                    margin: 0 0 40px;
                     text-align: left;
                     padding: 0;
                     @include media-breakpoint-up(sm) {
-                        margin: 0 0 45px;
+                        margin: 0 0 56px;
                     }
                     h1 {
                         color: $dark;
-                        font-size: 20px;
-                        font-weight: 700;
-                        line-height: 30px;
-                        margin: 0 0 8px;
+                        max-width: 980px;
+                        font-family: $font-family-display !important;
+                        font-size: clamp(54px, 8vw, 118px);
+                        font-weight: 400;
+                        line-height: .88;
+                        letter-spacing: -.035em;
+                        margin: 0 0 24px;
+                        text-transform: uppercase;
                         text-align: left;
                         @include media-breakpoint-up(md) {
-                            font-size: 24px;
-                            font-weight: 700;
-                            margin: 0 0 12px;
+                            margin: 0 0 28px;
                         }
                     }
                     p {
-                        font-size: 16px;
-                        line-height: 20px;
+                        max-width: 650px;
+                        font-size: 19px;
+                        line-height: 1.45;
                         color: $light-dark;
                         font-style: normal;
                         margin: 0;
@@ -88,7 +91,7 @@ section.home {
                                 text-align: center;
                                 padding: 6px;
                                 height: 38px;
-                                border-radius: 6px;
+                                border-radius: 9999px;
                                 background: $primary;
                                 font-family: $font-family-title;
                                 border: none;
@@ -103,8 +106,9 @@ section.home {
                         }
                         .input-holder {
                             flex-grow: 1;
-                            border-radius: 6px;
-                            background: $primary-light;
+                            border: 1px solid $paradigma-border;
+                            border-radius: 9999px;
+                            background: #fff;
                             padding: 0 0 0 33px;
                             position: relative;
                             display: block;

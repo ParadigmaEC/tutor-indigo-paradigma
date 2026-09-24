@@ -1,1 +1,23 @@
-// Paradigma uses local/system fonts in Studio to avoid render-blocking requests.
+@font-face {
+  font-family: 'CS Genio Mono';
+  src: url('#{$static-path}/fonts/CSGenioMono-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Dx Monstral';
+  src: url('#{$static-path}/fonts/DxMonstral-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Dozed';
+  src: url('#{$static-path}/fonts/Dozed-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
