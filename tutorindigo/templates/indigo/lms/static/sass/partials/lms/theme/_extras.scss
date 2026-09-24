@@ -4,7 +4,7 @@ $content_padding_top: 24px;
 $content-padding-bottom: 10px;
 $header-height: 75px;
 $footer-height: 125.5px;
-body, h1, h2, h3, h4, h5, h6, p, label, button {
+body, p, label, button, input, select, textarea {
   font-family: $font-family-title !important;
 }
 html {
@@ -12,7 +12,8 @@ html {
 }
 body, body.view-profile {
   min-height: initial;
-  background-color: #fafaf8;
+  background-color: $paradigma-white;
+  color: $paradigma-black;
   -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
@@ -55,19 +56,23 @@ section.wiki .btn.btn-primary {
 }
 
 %btn-pl-default-base {
-  border-radius: 8px;
+  border-radius: 9999px;
 }
 
 .btn, .global-header .nav-links .secondary .btn {
-  border-radius: 8px;
+  border-radius: 9999px;
+  font-weight: 700;
+  letter-spacing: .04em;
 }
 
 %t-title {
   font-family: $font-family-title;
 }
 
-h1, h2, h3, h1 span, h2 span, h3 span, .nav-item {
-  font-family: $font-family-title;
+h1, h2, h3, h1 span, h2 span, h3 span {
+  font-family: $font-family-display;
+  font-weight: 400;
+  letter-spacing: -.025em;
 }
 
 // Brand typography is reserved for short UI copy so course reading stays calm.
@@ -94,6 +99,87 @@ h1, h2, h3, h1 span, h2 span, h3 span, .nav-item {
 .courses-listing .course-date {
   font-family: $font-family-accent;
   letter-spacing: 0.02em;
+}
+
+// Shared Paradigma surfaces and controls.
+a {
+  color: $primary;
+
+  &:hover,
+  &:focus {
+    color: $paradigma-surface;
+  }
+}
+
+.btn-primary,
+.button-primary,
+.action-primary,
+.search-button,
+.learn-more {
+  background: $paradigma-black !important;
+  border-color: $paradigma-black !important;
+  color: $paradigma-white !important;
+  border-radius: 9999px !important;
+  text-transform: uppercase;
+  font-family: $font-family-brand !important;
+  font-weight: 400 !important;
+  letter-spacing: .04em;
+
+  &:hover,
+  &:focus {
+    background: $paradigma-surface !important;
+    border-color: $paradigma-surface !important;
+  }
+}
+
+input,
+select,
+textarea {
+  border-color: $paradigma-border !important;
+
+  &:focus {
+    border-color: $paradigma-black !important;
+    box-shadow: 0 0 0 1px $paradigma-black !important;
+  }
+}
+
+.container.about {
+  position: relative;
+  max-width: 960px;
+  min-height: 52vh;
+  padding: 72px 24px;
+
+  h1 {
+    max-width: 760px;
+    margin-bottom: 28px;
+    font-size: clamp(42px, 7vw, 88px);
+    line-height: .9;
+  }
+
+  p {
+    max-width: 720px;
+    font-size: 18px;
+    line-height: 1.6;
+  }
+
+  .paradigma-static-link {
+    display: inline-flex;
+    margin-top: 24px;
+    padding: 13px 22px;
+    border-radius: 9999px;
+    background: $paradigma-black;
+    color: $paradigma-white;
+    font-family: $font-family-brand;
+    text-decoration: none;
+    text-transform: uppercase;
+  }
+}
+
+body.indigo-dark-theme {
+  .container.about .paradigma-static-link {
+    background: $paradigma-white;
+    color: $paradigma-black;
+  }
 }
 
 // It is necessary to specify `:not(.courseware) >` in order to not affect the style

@@ -4,9 +4,11 @@ $(document).ready(function() {
     const themeCookie = 'selected-paragon-theme-variant';
 
     function applyThemeOnPage(){
-      const theme = $.cookie(themeCookie);
+      const theme = $.cookie(themeCookie) || 'dark';
 
-      if (theme === 'undefined' && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      if (!$.cookie(themeCookie)) {
+        $.cookie(themeCookie, theme, { domain: window.location.hostname, expires: 90, path: '/' });
+        window.localStorage.setItem(themeCookie, theme);
         $('body').addClass("indigo-dark-theme");
         $("#toggle-switch-input").prop("checked", true);
       }
@@ -17,13 +19,13 @@ $(document).ready(function() {
     }
 
     function setThemeToggleBtnState(){
-      const theme = $.cookie(themeCookie);
+      const theme = $.cookie(themeCookie) || 'dark';
       $("#toggle-switch-input").prop("checked", theme === 'dark');
       updateAccessibility();
     }
 
     function updateAccessibility() {
-      const theme = $.cookie(themeCookie);
+      const theme = $.cookie(themeCookie) || 'dark';
       const textWrapper = $('#theme-label');
       if (theme === 'dark') {
         textWrapper.text('Switch to Light Mode');

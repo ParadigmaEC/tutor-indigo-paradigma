@@ -89,6 +89,12 @@ const ToggleThemeButton = () => {
   useEffect(() => {
     const cookie = getThemeCookie();
     if (!cookie || cookie === 'undefined') {
+      setThemeAttribute('dark');
+      setIsDarkThemeEnabled(true);
+      for (const name of themeCookieNames) {
+        window.localStorage.setItem(name, 'dark');
+      }
+      setThemeCookies('dark', getCookieOptions(serverURL));
       return;
     }
     if (cookie !== window.localStorage.getItem(primaryCookie)) {
@@ -127,7 +133,7 @@ const ToggleThemeButton = () => {
         <label htmlFor="theme-toggle-checkbox" className="switch">
           <input
             id="theme-toggle-checkbox"
-            defaultChecked={getThemeCookie() === "dark"}
+            defaultChecked={!getThemeCookie() || getThemeCookie() === "dark"}
             onChange={onToggleTheme}
             onKeyUp={handleKeyUp}
             type="checkbox"

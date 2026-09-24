@@ -4,3 +4,38 @@
 #main {
     background-color: $secondary;
 }
+
+.wrapper-header .branding a,
+.wrapper-header .nav-account,
+.wrapper-header .nav-dd,
+.button,
+.btn {
+    font-family: 'CS Genio Mono', 'IBM Plex Mono', monospace !important;
+}
+
+.wrapper-header .branding img {
+    width: 92px;
+    height: 40px;
+    object-fit: contain;
+}
+
+body.indigo-dark-theme {
+    background: $body-bg-d !important;
+    color: $text-color-d !important;
+
+    #main,
+    .wrapper-content,
+    .content-primary {
+        background: $body-bg-d !important;
+    }
+
+    header,
+    .wrapper-header {
+        background: $body-bg-d !important;
+        border-bottom-color: rgba(213, 213, 208, .2) !important;
+    }
+
+    .wrapper-header .branding img {
+        filter: invert(1);
+    }
+}

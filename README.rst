@@ -1,12 +1,10 @@
-Indigo, a cool blue theme for Open edX
+Paradigma, an Open edX theme for Tutor
 ======================================
 
-Indigo is an elegant, customizable theme for `Open edX <https://openedx.org>`__.
+This repository contains Paradigma's branded learning theme for `Open edX <https://openedx.org>`__, built on Tutor Indigo. It applies the visual system from `paradigma.ec <https://paradigma.ec>`__ across the LMS, Studio and supported microfrontends.
 
 .. image:: ./screenshots/01-landing-page.png
     :alt: Platform landing page
-
-You can view the theme in action at https://sandbox.openedx.edly.io.
 
 Installation
 ------------
@@ -26,19 +24,19 @@ The Indigo theme will be automatically enabled if you have not previously define
 Configuration
 -------------
 
-- ``INDIGO_WELCOME_MESSAGE`` (default: "The place for all your online learning")
-- ``INDIGO_PRIMARY_COLOR`` (default: "#3b85ff")
-- ``INDIGO_FOOTER_NAV_LINKS`` (default: ``[{"title": "About", "url": "/about"}, {"title": "Contact", "url": "/contact"}]``)
+- ``INDIGO_WELCOME_MESSAGE`` (default: "Ideas que transforman.")
+- ``INDIGO_PRIMARY_COLOR`` (default: "#050505")
+- ``INDIGO_FOOTER_NAV_LINKS`` (defaults to Paradigma's public site and policy links)
 - ``INDIGO_ENABLE_DARK_TOGGLE`` (default: True)
 
 The ``INDIGO_*`` settings listed above may be modified by running ``tutor config save --set INDIGO_...=...``. For instance, to remove all links from the footer, run::
 
     tutor config save --set "INDIGO_FOOTER_NAV_LINKS=[]"
 
-Or, to set the primary color to forest green, run::
+Or, to change the primary color, run::
 
     # Note: The nested quotes are needed in order to handle the hash (#) correctly.
-    tutor config save --set 'INDIGO_PRIMARY_COLOR="#225522"'
+    tutor config save --set 'INDIGO_PRIMARY_COLOR="#050505"'
 
 Theme Toggle Button
 -------------------
@@ -84,7 +82,7 @@ The theme images are stored in `tutorindigo/templates/indigo/lms/static/images <
 Overriding the default "about", "contact", etc. static pages
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-By default, the ``/about`` and ``/contact`` pages contain a simple line of text: "This page left intentionally blank. Feel free to add your own content". This is of course unusable in production. In the following, we detail how to override just any of the static templates used in Open edX.
+The bundled ``/about``, ``/contact``, ``/help``, ``/privacy`` and ``/tos`` pages contain Paradigma-specific copy and links. You can still replace any of them with deployment-specific content.
 
 The static templates used by Open edX to render those pages are all stored in the `edx-platform/lms/templates/static_templates <https://github.com/edx/edx-platform/tree/open-release/sumac.master/lms/templates/static_templates>`__ folder. To override those templates, you should add your own in the following folder::
 
