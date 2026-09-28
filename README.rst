@@ -1,138 +1,84 @@
-Paradigma, an Open edX theme for Tutor
-======================================
+Paradigma theme for Tutor
+=========================
 
-This repository contains Paradigma's branded learning theme for `Open edX <https://openedx.org>`__, built on Tutor Indigo. It applies the visual system from `paradigma.ec <https://paradigma.ec>`__ across the LMS, Studio and supported microfrontends.
+Tema clásico de Paradigma para el LMS y Studio de `Open edX <https://openedx.org>`__, basado en
+Tutor Indigo y alineado con `paradigma.ec <https://paradigma.ec>`__.
 
-.. image:: ./screenshots/01-landing-page.png
-    :alt: Platform landing page
+Responsabilidades
+-----------------
 
-Installation
-------------
+Este repositorio controla exclusivamente:
 
-Indigo was specially developed to be used with `Tutor <https://docs.tutor.edly.io>`__ (at least v14.0.0). If you have not installed Open edX with Tutor, then installation instructions will vary.
+* plantillas Django/Mako del LMS y Studio;
+* Sass, tipografías, logos y páginas estáticas compiladas en la imagen ``openedx``;
+* configuración clásica de Tutor necesaria para activar el tema ``indigo``.
 
-Install and enable Indigo plugin::
+Las aplicaciones React servidas bajo ``apps.learn.paradigma.ec`` pertenecen al repositorio
+``openedx-mfe-theme-paradigma`` y a su plugin ``paradigma_mfe``. Este plugin no instala
+``@edx/brand``, no configura ``PARAGON_THEME_URLS``, no registra slots de MFEs y no cambia la
+imagen Docker de las MFEs. Esta separación evita estilos dependientes del orden de carga y
+configuraciones runtime contradictorias.
 
-    tutor plugins install indigo
+Instalación
+-----------
+
+Instale este paquete y el tema MFE por separado, habilite ambos plugins y regenere la
+configuración::
+
+    pip install --no-deps /ruta/tutor-indigo-paradigma
+    pip install --no-deps /ruta/openedx-mfe-theme-paradigma
     tutor plugins enable indigo
-    tutor local launch
-
-The Indigo theme will be automatically enabled if you have not previously defined a theme. To override an existing theme, use the `settheme command <https://docs.tutor.edly.io/local.html#setting-a-new-theme>`__::
-
-    tutor local do settheme indigo
-
-Configuration
--------------
-
-- ``INDIGO_WELCOME_MESSAGE`` (default: "Ideas que transforman.")
-- ``INDIGO_PRIMARY_COLOR`` (default: "#050505")
-- ``INDIGO_FOOTER_NAV_LINKS`` (defaults to Paradigma's public site and policy links)
-- ``INDIGO_ENABLE_DARK_TOGGLE`` (default: True)
-
-The ``INDIGO_*`` settings listed above may be modified by running ``tutor config save --set INDIGO_...=...``. For instance, to remove all links from the footer, run::
-
-    tutor config save --set "INDIGO_FOOTER_NAV_LINKS=[]"
-
-Or, to change the primary color, run::
-
-    # Note: The nested quotes are needed in order to handle the hash (#) correctly.
-    tutor config save --set 'INDIGO_PRIMARY_COLOR="#050505"'
-
-Theme Toggle Button
--------------------
-
-The theme toggle button is enabled by default when Tutor Indigo is installed. The theme can be switched from light to dark and vice versa. To disable it, run::
-
-    tutor config save --set INDIGO_ENABLE_DARK_TOGGLE=false
-    tutor images build openedx
-    tutor local start -d
-
-
-Customization
--------------
-
-This plugin can serve as a starting point to create your own themes. Just fork this repository and modify the files as you see fit.
-
-You will have to start by installing indigo from source::
-
-    git clone https://github.com/overhangio/tutor-indigo.git
-    pip install -e ./tutor-indigo
-    tutor plugins enable indigo
-
-Any change you make to the theme can be viewed immediately in development mode (with `tutor dev ...` commands) after you run::
-
+    tutor plugins enable paradigma_mfe
     tutor config save
 
-To deploy your changes to production, you will have to rebuild the "openedx" Docker image and restart your containers::
+Para compilar los cambios clásicos y reiniciar Open edX::
 
     tutor images build openedx
-    tutor local start -d
+    tutor local restart lms cms
 
-Changing the Styling in Sass files
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Los cambios normales del tema MFE siguen el flujo de publicación documentado en
+``openedx-mfe-theme-paradigma`` y no requieren recompilar ``openedx``.
 
-To customize the theme stylesheets, modify the files in the ``tutorindigo/templates/indigo/lms/static/sass/`` and  ``tutorindigo/templates/indigo/cms/static/sass/`` directories. In particular, the ``_extras.scss`` files should contain most styling rules.
+Configuración
+-------------
 
+* ``INDIGO_WELCOME_MESSAGE``: ``Ideas que transforman.``
+* ``INDIGO_PRIMARY_COLOR``: ``#050505``
+* ``INDIGO_FOOTER_NAV_LINKS``: enlaces públicos y legales de Paradigma
+* ``INDIGO_ENABLE_DARK_TOGGLE``: activa el selector del tema clásico
 
-Changing the default logo and other images
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Ejemplo::
 
-The theme images are stored in `tutorindigo/templates/indigo/lms/static/images <https://github.com/overhangio/tutor-indigo/tree/release/tutorindigo/templates/indigo/lms/static/images>`__ for the LMS, and in `tutorindigo/templates/indigo/cms/static/images <https://github.com/overhangio/tutor-indigo/tree/release/tutorindigo/templates/indigo/cms/static/images>`__ for the CMS. To use custom images in your theme, just replace the files stored in these folders with your own.
+    tutor config save --set 'INDIGO_PRIMARY_COLOR="#050505"'
 
-Overriding the default "about", "contact", etc. static pages
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Identidad visual
+----------------
 
-The bundled ``/about``, ``/contact``, ``/help``, ``/privacy`` and ``/tos`` pages contain Paradigma-specific copy and links. You can still replace any of them with deployment-specific content.
+La implementación comparte con el tema MFE la paleta carbón/marfil, cuerpo Helvetica Neue,
+controles CS Genio Mono, encabezados Dozed y Dx Monstral únicamente para momentos hero. Los
+componentes usan radios contenidos de 1–4 px; las formas pill se reservan para componentes que lo
+requieran semánticamente.
 
-The static templates used by Open edX to render those pages are all stored in the `edx-platform/lms/templates/static_templates <https://github.com/edx/edx-platform/tree/open-release/sumac.master/lms/templates/static_templates>`__ folder. To override those templates, you should add your own in the following folder::
+Los puntos principales de edición son:
 
-    ls tutorindigo/templates/indigo/lms/templates/static_templates"
+* ``tutorindigo/templates/indigo/lms/static/sass/partials/lms/theme``
+* ``tutorindigo/templates/indigo/cms/static/sass/partials/cms/theme``
+* ``tutorindigo/templates/indigo/lms/templates``
+* ``brand-assets``
 
-For instance, edit the "donate.html" file in this directory. We can derive the content of this file from the contents of the `donate.html <https://github.com/edx/edx-platform/blob/open-release/sumac.master/lms/templates/static_templates/donate.html>`__ static template in edx-platform:
+Validación
+----------
 
-.. code-block:: mako
+Antes de publicar::
 
-    <%page expression_filter="h"/>
-    <%! from django.utils.translation import gettext as _ %>
-    <%inherit file="../main.html" />
+    make test-lint
+    make test-format
+    python -m build --sdist
 
-    <%block name="pagetitle">${_("Donate")}</%block>
+Revise login, registro, páginas estáticas, dashboard clásico, Studio, formularios, estados de foco
+y ambos temas de color. Las MFEs se validan desde el repositorio complementario.
 
-    <main id="main" aria-label="Content" tabindex="-1">
-        <section class="container about">
-            <h1>
-                <%block name="pageheader">${page_header or _("Donate")}</%block>
-            </h1>
-            <p>
-                <%block name="pagecontent">Add a compelling message here, asking for donations.</%block>
-            </p>
-        </section>
-    </main>
+Licencia
+--------
 
-This new template will then be used to render the /donate url.
-
-Troubleshooting
----------------
-
-Can't override styles using Indigo Theme for MFEs
--------------------------------------------------
-
-The indigo theme can’t override styles for MFEs directly. It overrides the styles for edx-platform. In case of MFEs, `@edx/brand <https://github.com/openedx/brand-openedx>`_ is used to override the styles. Customize the ``@edx/brand`` package to your preferences and include this customized package in `tutor-indigo` plugin. In this way, styles can be overidden::
-
-
-    hooks.Filters.ENV_PATCHES.add_item((
-                "mfe-dockerfile-post-npm-install",
-                """
-    RUN npm install '@edx/brand@npm:custom-brand-package'
-    RUN npm install '@edx/brand@git+https://github.com/username/brand-openedx.git#custom-branch'
-    """,
-            ))
-
-
-This Tutor plugin is maintained by Muhammad Faraz Maqsood and Hammad Yousaf from `Edly <https://edly.io>`__. Community support is available from the official `Open edX forum <https://discuss.openedx.org>`__. Do you need help with this plugin? See the `troubleshooting <https://docs.tutor.edly.io/troubleshooting.html>`__ section from the Tutor documentation.
-
-
-License
--------
-
-This work is licensed under the terms of the `GNU Affero General Public License (AGPL) <https://github.com/overhangio/tutor-indigo/blob/release/LICENSE.txt>`_.
+Este trabajo se distribuye bajo GNU Affero General Public License v3.

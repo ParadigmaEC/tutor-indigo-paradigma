@@ -27,7 +27,7 @@ $serif: 'Helvetica Neue', Arial, sans-serif;
 
 $f-sans-serif: 'Helvetica Neue', Arial, sans-serif;
 
-$font-family-title: 'Dx Monstral', 'Arial Black', 'Helvetica Neue', Arial, sans-serif;
+$font-family-title: 'Dozed', 'Arial Black', 'Helvetica Neue', Arial, sans-serif;
 
 $font-family-sans-serif: 'Helvetica Neue', Arial, sans-serif;
 
@@ -58,9 +58,9 @@ h4,
 h5,
 h6 {
   color: #050505 !important;
-  font-family: 'Helvetica Neue', Arial, sans-serif !important;
-  font-weight: 700 !important;
-  letter-spacing: -0.045em;
+  font-family: $font-family-title !important;
+  font-weight: 400 !important;
+  letter-spacing: 0.015em;
 }
 
 /* Título principal de Studio */
@@ -69,7 +69,7 @@ h6 {
 .view-dashboard h1 {
   font-size: 42px !important;
   line-height: 1.05 !important;
-  font-weight: 900 !important;
+  font-weight: 400 !important;
 }
 
 /* Links */
@@ -89,10 +89,10 @@ a:focus {
   background: #050505 !important;
   border-color: #050505 !important;
   color: #F5F5F2 !important;
-  border-radius: 9999px !important;
-  font-weight: 700 !important;
-  text-transform: uppercase;
-  letter-spacing: .04em;
+  border-radius: 2px !important;
+  font-family: 'CS Genio Mono', 'IBM Plex Mono', monospace !important;
+  font-weight: 400 !important;
+  letter-spacing: .055em;
 }
 
 .btn-primary:hover,
@@ -108,7 +108,7 @@ a:focus {
   background: transparent !important;
   border: 1px solid #050505 !important;
   color: #050505 !important;
-  border-radius: 9999px !important;
+  border-radius: 2px !important;
 }
 
 /* Inputs */

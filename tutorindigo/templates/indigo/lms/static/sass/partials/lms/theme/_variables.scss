@@ -4,8 +4,9 @@ $primary-light: #F5F5F2;
 // Theme fonts
 $font-family-title: 'Helvetica Neue', Arial, sans-serif;
 $font-family-brand: 'CS Genio Mono', 'IBM Plex Mono', monospace;
-$font-family-display: 'Dx Monstral', 'Arial Black', 'Helvetica Neue', Arial, sans-serif;
-$font-family-accent: 'Dozed', 'Arial Black', 'Helvetica Neue', Arial, sans-serif;
+$font-family-display: 'Dozed', 'Arial Black', 'Helvetica Neue', Arial, sans-serif;
+$font-family-hero: 'Dx Monstral', 'Arial Black', 'Helvetica Neue', Arial, sans-serif;
+$font-family-accent: 'CS Genio Mono', 'IBM Plex Mono', monospace;
 $serif: 'Helvetica Neue', Arial, sans-serif;
 $f-sans-serif: 'Helvetica Neue', Arial, sans-serif;
 // Initialize the Open edX Bootstrap theme
@@ -20,7 +21,8 @@ $paradigma-surface: #202222;
 $paradigma-surface-light: #2A2C2C;
 $paradigma-white: #F5F5F2;
 $paradigma-border: #D5D5D0;
-$paradigma-muted: #A3A3A0;
+$paradigma-muted: #5F605D;
+$paradigma-decorative: #A3A3A0;
 
 $dark: $paradigma-black;
 $light-dark: #515452;

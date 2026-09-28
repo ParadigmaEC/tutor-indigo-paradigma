@@ -24,7 +24,6 @@ classifiers = [
     "Programming Language :: Python :: 3.14",
 ]
 dependencies = [
-  "tutor-mfe>=22.0.0,<23.0.0", 
   "tutor>=22.0.0,<23.0.0"
 ]
 

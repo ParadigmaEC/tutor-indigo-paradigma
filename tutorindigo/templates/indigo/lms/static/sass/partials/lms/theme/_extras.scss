@@ -55,13 +55,19 @@ section.wiki .btn.btn-primary {
     outline-width: 2px;
 }
 
+:focus-visible {
+  outline: 2px solid $paradigma-white;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 5px $paradigma-black;
+}
+
 %btn-pl-default-base {
-  border-radius: 9999px;
+  border-radius: 2px;
 }
 
 .btn, .global-header .nav-links .secondary .btn {
-  border-radius: 9999px;
-  font-weight: 700;
+  border-radius: 2px;
+  font-weight: 400;
   letter-spacing: .04em;
 }
 
@@ -88,7 +94,7 @@ h1, h2, h3, h1 span, h2 span, h3 span {
 }
 
 #main .home.style-logout .heading-group h1 {
-  font-family: $font-family-display !important;
+  font-family: $font-family-hero !important;
   font-weight: 400;
   letter-spacing: 0.025em;
   text-transform: uppercase;
@@ -119,8 +125,7 @@ a {
   background: $paradigma-black !important;
   border-color: $paradigma-black !important;
   color: $paradigma-white !important;
-  border-radius: 9999px !important;
-  text-transform: uppercase;
+  border-radius: 2px !important;
   font-family: $font-family-brand !important;
   font-weight: 400 !important;
   letter-spacing: .04em;
@@ -166,7 +171,7 @@ textarea {
     display: inline-flex;
     margin-top: 24px;
     padding: 13px 22px;
-    border-radius: 9999px;
+    border-radius: 2px;
     background: $paradigma-black;
     color: $paradigma-white;
     font-family: $font-family-brand;
